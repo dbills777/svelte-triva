@@ -1,10 +1,14 @@
 <script>
 	export let name;
+	import { Button } from 'sveltestrap';
+  	const handleClick = () => alert('I warned you!');
 </script>
 
 <main>
 	<h1>Hello {name}!</h1>
 	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+  <Button color="danger" on:click={handleClick}>Do Not Press</Button>
+
 </main>
 
 <style>
