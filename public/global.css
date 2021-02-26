@@ -61,9 +61,28 @@ button:not(:disabled):active {
 button:focus {
 	border-color: #666;
 } */
+.container {
+	margin-top: 5rem;
+}
 .card-footer{
     background-color: rgb(168, 249, 181);
 }
 .card-header{
     background-color: rgb(142, 159, 255);
+}
+
+
+.wide-button{
+	width: 100%;
+	text-align: left;
+}
+.correct{
+	background-color: rgb(168, 249, 181);
+	width: 100%;
+	text-align: left;
+}
+.footer-display{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }

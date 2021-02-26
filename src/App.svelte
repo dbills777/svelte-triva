@@ -1,6 +1,32 @@
 <script>
-	import {Button} from 'sveltestrap';
+import {Button} from 'sveltestrap';
+import Question from './Question.svelte';
 import  QuestionCard  from "./Question.svelte";
+
+let questions = []
+
+async function getAPIData(url) {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  } catch (error) {}
+}
+const theData = getAPIData(`https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple`)
+	.then((data) => {
+		questions = data.results.map((apiQuestion) => {
+				const question = {
+					question: apiQuestion.question,
+					difficulty: apiQuestion.difficulty,
+					correct_answer: apiQuestion.correct_answer,
+					incorrect_answers: apiQuestion.incorrect_answers,
+				};
+				questionsArray.push(question)
+				console.log(questions)
+				return question;
+			});
+  console.log(data.results)
+});
 
 let questionsArray = [
   {
@@ -11,31 +37,19 @@ let questionsArray = [
     correct_answer: 'HTC',
     incorrect_answers: ['Oculus', 'Google', 'Razer'],
   },
-  {
-    category: 'General Knowledge',
-    type: 'multiple',
-    difficulty: 'easy',
-    question: 'What was the name of the WWF professional wrestling tag team made up of the wrestlers Ax and Smash?',
-    correct_answer: 'Demolition',
-    incorrect_answers: ['The Dream Team', 'The Bushwhackers', 'The British Bulldogs'],
-  },
-  {
-    category: 'General Knowledge',
-    type: 'multiple',
-    difficulty: 'easy',
-    question: 'How would one say goodbye in Spanish?',
-    correct_answer: 'Adi&oacute;s',
-    incorrect_answers: [' Hola', 'Au Revoir', 'Salir'],
-  },
+  
 ];
 
 let arrayIndex = 0
+let score = 0
+$: console.log()
 	const ShowNext = () =>{
 	arrayIndex +=1
 }
 
+console.log(questions)
 $: currentQuestion = questionsArray[arrayIndex]
-
+console.log(currentQuestion)
 </script>
 
 <main>
@@ -44,10 +58,16 @@ $: currentQuestion = questionsArray[arrayIndex]
 	difficulty = {currentQuestion.difficulty}
 	correct_answer={currentQuestion.correct_answer}
 	incorrect_answers={currentQuestion.incorrect_answers}
+	score = {score}
 	/>
-	<Button on:click={ShowNext} bind:value={arrayIndex}> Next quesion: {arrayIndex} </Button>
+	<Button class='next-btn' on:click={ShowNext} bind:value={arrayIndex}> Next quesion: {arrayIndex} </Button>
 </main>
 
 <style>
+main{
+	max-width: 900px;
+	margin: 0 auto;
+
+}
 
 </style>
