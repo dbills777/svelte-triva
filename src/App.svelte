@@ -12,7 +12,7 @@ async function getAPIData(url) {
     return data;
   } catch (error) {}
 }
-const theData = getAPIData(`https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple`)
+const theData = getAPIData(`https://opentdb.com/api.php?amount=10&category=11&difficulty=easy&type=multiple`)
 	.then((data) => {
 		questions = data.results.map((apiQuestion) => {
 				const question = {
