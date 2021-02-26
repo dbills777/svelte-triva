@@ -44,7 +44,7 @@ input:disabled {
 	color: #ccc;
 }
 
-button {
+/* button {
 	color: #333;
 	background-color: #f4f4f4;
 	outline: none;
@@ -60,4 +60,10 @@ button:not(:disabled):active {
 
 button:focus {
 	border-color: #666;
+} */
+.card-footer{
+    background-color: rgb(168, 249, 181);
+}
+.card-header{
+    background-color: rgb(142, 159, 255);
 }

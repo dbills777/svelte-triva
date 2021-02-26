@@ -1,8 +1,4 @@
-<script>
-	import {Button} from 'sveltestrap';
-import  QuestionCard  from "./Question.svelte";
-
-let questionsArray = [
+let list = [
   {
     category: 'General Knowledge',
     type: 'multiple',
@@ -28,26 +24,3 @@ let questionsArray = [
     incorrect_answers: [' Hola', 'Au Revoir', 'Salir'],
   },
 ];
-
-let arrayIndex = 0
-	const ShowNext = () =>{
-	arrayIndex +=1
-}
-
-$: currentQuestion = questionsArray[arrayIndex]
-
-</script>
-
-<main>
-	<QuestionCard
-	question ={currentQuestion.question}
-	difficulty = {currentQuestion.difficulty}
-	correct_answer={currentQuestion.correct_answer}
-	incorrect_answers={currentQuestion.incorrect_answers}
-	/>
-	<Button on:click={ShowNext} bind:value={arrayIndex}> Next quesion: {arrayIndex} </Button>
-</main>
-
-<style>
-
-</style>
