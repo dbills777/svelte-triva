@@ -33,11 +33,11 @@ let questionsArray = [
     category: 'General Knowledge',
     type: 'multiple',
     difficulty: 'easy',
-    question: 'Which company did Valve cooperate with in the creation of the Vive?',
-    correct_answer: 'HTC',
-    incorrect_answers: ['Oculus', 'Google', 'Razer'],
+    question: 'Are you Ready for Trivia? Hit Next Question to Begin',
+    correct_answer: 'Go',
+    incorrect_answers: ['1', '2', '3', 'GO'],
   },
-  
+
 ];
 
 let arrayIndex = 0
