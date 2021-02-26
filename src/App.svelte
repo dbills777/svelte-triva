@@ -16,7 +16,7 @@ const theData = getAPIData(`https://opentdb.com/api.php?amount=10&category=11&di
 	.then((data) => {
 		questions = data.results.map((apiQuestion) => {
 				const question = {
-					question: apiQuestion.question,
+					question: apiQuestion.question.replace(/&#039;/g, " ").replace(/&quot;/g, '"').replace(/&rsquo;/g, `'`).replace(/&amp;/g, '&'),
 					difficulty: apiQuestion.difficulty,
 					correct_answer: apiQuestion.correct_answer,
 					incorrect_answers: apiQuestion.incorrect_answers,
