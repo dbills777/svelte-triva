@@ -33,12 +33,14 @@ const fetchQuestions = async( cat, diff) =>{
 let isReady = false
 	function toggle(cat, diff) {
 		isReady = !isReady;
+		arrayIndex = 0
 		if(isReady){
 		fetchQuestions(cat, diff).then((questions)=>{
 			questionsArray = questions
 		})
 	}
 	}
+
 
 let arrayIndex = 0
 let score = 0
