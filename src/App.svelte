@@ -1,7 +1,6 @@
 <script>
 import {Button} from 'sveltestrap';
 import  QuestionCard  from "./Question.svelte";
-// import Options from './Options.svelte'
 
 let questions = []
 let questionsArray = [
@@ -18,8 +17,6 @@ let questionsArray = [
 
 const fetchQuestions = async( cat, diff) =>{
 	const res = await fetch(`https://opentdb.com/api.php?amount=11&category=${cat}&difficulty=${diff}&type=multiple`);
-
-
 	const data = await res.json()
 	const questions = data.results
 	let newQuestions = questions.map((apiQuestion) => {
@@ -43,31 +40,23 @@ let isReady = false
 	}
 	}
 
-
-
-
 let arrayIndex = 0
 let score = 0
-let remaining = 11
-let answered = -1
 
 const ShowNext = () =>{
 	if(arrayIndex<10){
 		arrayIndex +=1
-		bannerUpdate()
 	}
 	else{
 		return
 	}
 }
-const bannerUpdate = ()=>{
-	remaining -=1
-	answered +=1
-}
-console.log(questions)
-$: currentQuestion = questionsArray[arrayIndex]
-console.log(questionsArray.length)
 
+$: currentQuestion = questionsArray[arrayIndex]
+
+// select box info
+let category;
+let difficultyLevel;
 let categories = [
 		{ id: "9", text: `General Knowledge` },
 		{ id: "14", text: `Entertainment: TV` },
@@ -81,14 +70,10 @@ let difficulty = [
 		{ id: "medium", text: `Medium` },
 		{ id: "hard", text: `Hard` }
 	];
-
-	let category;
-	let difficultyLevel;
-
-
-	function handleSubmit() {
-		toggle(category.id, difficultyLevel.id)
-	}
+// selectbox submit
+function handleSubmit() {
+	toggle(category.id, difficultyLevel.id)
+}
 </script>
 
 <main>
@@ -113,8 +98,9 @@ let difficulty = [
 
 	{/if}
 	{#if !isReady }
-	<h2 class="cat">Choose A Category</h2>
+	<h2 class="title">Trivia</h2>
 	<form on:submit|preventDefault={handleSubmit}>
+	<h3 class="directions">Pick a Category and a level to start playing Trivia</h3>
 	<select bind:value={category}>
 		{#each categories as option}
 			<option value={option}>
@@ -133,10 +119,7 @@ let difficulty = [
 		Start Game
 	</Button>
 </form>
-
 	{/if}
-
-
 </main>
 
 <style>
@@ -144,6 +127,4 @@ main{
 	max-width: 900px;
 	margin: 0 auto;
 }
-
-
 </style>

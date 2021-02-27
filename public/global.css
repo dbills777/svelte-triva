@@ -54,7 +54,7 @@ input:disabled {
     background-color: rgb(142, 159, 255);
 	min-height: 8rem;
 }
-.cat{
+.title{
 	text-align: center;
 	margin: 3rem;
 }
@@ -63,6 +63,12 @@ form{
 	padding: 8rem;
 	background-color: rgb(142, 159, 255);
 	border-radius: 50px;
+}
+.directions{
+	color: white;
+	text-transform: capitalize;
+	margin-bottom: 2rem;
+	padding-top: 0;
 }
 
 .wide-button{
