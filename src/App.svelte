@@ -52,8 +52,13 @@ let remaining = 11
 let answered = -1
 
 const ShowNext = () =>{
-	arrayIndex +=1
-	bannerUpdate()
+	if(arrayIndex<10){
+		arrayIndex +=1
+		bannerUpdate()
+	}
+	else{
+		return
+	}
 }
 const bannerUpdate = ()=>{
 	remaining -=1
@@ -90,6 +95,7 @@ let difficulty = [
 	{#if isReady}
 	<Button class='warning' on:click={toggle} > Quit Game </Button>
 	<QuestionCard
+	arrayIndex ={arrayIndex}
 	question ={currentQuestion.question}
 	difficulty = {currentQuestion.difficulty}
 	correct_answer={currentQuestion.correct_answer}
@@ -107,7 +113,7 @@ let difficulty = [
 
 	{/if}
 	{#if !isReady }
-	<h2>Choose A Category</h2>
+	<h2 class="cat">Choose A Category</h2>
 	<form on:submit|preventDefault={handleSubmit}>
 	<select bind:value={category}>
 		{#each categories as option}

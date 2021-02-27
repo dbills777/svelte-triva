@@ -54,7 +54,16 @@ input:disabled {
     background-color: rgb(142, 159, 255);
 	min-height: 8rem;
 }
-
+.cat{
+	text-align: center;
+	margin: 3rem;
+}
+form{
+	text-align: center;
+	padding: 8rem;
+	background-color: rgb(142, 159, 255);
+	border-radius: 50px;
+}
 
 .wide-button{
 	width: 100%;

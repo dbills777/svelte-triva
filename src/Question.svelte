@@ -14,6 +14,7 @@ export let question;
 export let correct_answer;
 export let incorrect_answers;
 export let score;
+export let arrayIndex;
 let incorrect = 0
 export let ShowNext
 
@@ -26,6 +27,7 @@ function shuffle(array) {
 }
 
 function checkAnswer(e){
+  if(arrayIndex < 10 ){
     console.log("correct: ", correct_answer)
     console.log("selected answer: ", e.target.value)
     if(e.target.value === correct_answer){
@@ -39,6 +41,7 @@ function checkAnswer(e){
       ShowNext()
       return  incorrect +=1
     }
+  }else{return}
 
 }
 
