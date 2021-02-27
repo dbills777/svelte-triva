@@ -39,15 +39,13 @@ let isReady = false
 		if(isReady){
 		fetchQuestions(cat, diff).then((questions)=>{
 			questionsArray = questions
-
 		})
 	}
 	}
 
 
 
-let value = ['9', '14']
-let items = ["General Knowlege"]
+
 let arrayIndex = 0
 let score = 0
 let remaining = 11
@@ -82,10 +80,8 @@ let difficulty = [
 	let category;
 	let difficultyLevel;
 
-	let answer = '';
 
 	function handleSubmit() {
-		// alert(`answered question ${category.id} (${difficultyLevel.text}) with`);
 		toggle(category.id, difficultyLevel.id)
 	}
 </script>
@@ -101,26 +97,26 @@ let difficulty = [
 	score = {score}
 	ShowNext= {ShowNext}
 	/>
-	{#if arrayIndex <= 9 }
-	<Button class='next-btn' on:click={ShowNext} bind:value={arrayIndex}> Next quesion: {arrayIndex} </Button>
+	{#if arrayIndex < 11 }
+	<Button class='next-btn'  bind:value={arrayIndex }>  Questions Answered: {arrayIndex}/10 </Button>
 	{/if}
 
-	{#if arrayIndex >= 9 }
-	<Button class='next-btn' on:click={fetchQuestions} bind:value={arrayIndex}> NewGame {arrayIndex} </Button>
+	{#if arrayIndex > 9 }
+	<Button class='next-btn' on:click={toggle} bind:value={arrayIndex}> NewGame {arrayIndex} </Button>
 	{/if}
 
 	{/if}
 	{#if !isReady }
 	<h2>Choose A Category</h2>
 	<form on:submit|preventDefault={handleSubmit}>
-	<select bind:value={category} on:blur="{() => answer = ''}">
+	<select bind:value={category}>
 		{#each categories as option}
 			<option value={option}>
 				{option.text}
 			</option>
 		{/each}
 	</select>
-	<select bind:value={difficultyLevel} on:blur="{() => answer = ''}">
+	<select bind:value={difficultyLevel}>
 		{#each difficulty as option}
 			<option value={option}>
 				{option.text}
