@@ -68,6 +68,9 @@ function handleSubmit() {
 }
 
 </script>
+{#await currentQuestion}
+	<p>...loading</p>
+{:then currentQuestion}
 
 <main>
 	{#if isReady}
@@ -114,6 +117,10 @@ function handleSubmit() {
 </form>
 	{/if}
 </main>
+{:catch error}
+	<p style="color: red">{error.message}</p>
+{/await}
+
 
 <style>
 main{
