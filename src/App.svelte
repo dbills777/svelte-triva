@@ -3,9 +3,20 @@ import {Button} from 'sveltestrap';
 import  QuestionCard  from "./Question.svelte";
 
 let questions = []
+let questionsArray = [
+  {
+    category: 'General Knowledge',
+    type: 'multiple',
+    difficulty: 'easy',
+    question: 'Are you Ready for Trivia? Hit Next Question to Begin',
+    correct_answer: 'Go',
+    incorrect_answers: ['1', '2', '3', 'GO'],
+  },
+
+];
 
 const fetchQuestions = async( cat, diff) =>{
-	const res = await fetch(`https://opentdb.com/api.php?amount=10&category=${cat}&difficulty=${diff}&type=multiple`);
+	const res = await fetch(`https://opentdb.com/api.php?amount=11&category=${cat}&difficulty=${diff}&type=multiple`);
 	const data = await res.json()
 	const questions = data.results
 	let newQuestions = questions.map((apiQuestion) => {
@@ -19,24 +30,21 @@ const fetchQuestions = async( cat, diff) =>{
 	});
 	return newQuestions
 }
+let isReady = false
+	function toggle() {
+		isReady = !isReady;
+		if(isReady){
+		fetchQuestions('11', 'easy').then((questions)=>{
+			questionsArray = questions
 
-fetchQuestions('11', 'easy').then((questions)=>{
-	questionsArray = questions
-})
+		})
+	}
+	}
 
 
-let questionsArray = [
-  {
-    category: 'General Knowledge',
-    type: 'multiple',
-    difficulty: 'easy',
-    question: 'Are you Ready for Trivia? Hit Next Question to Begin',
-    correct_answer: 'Go',
-    incorrect_answers: ['1', '2', '3', 'GO'],
-  },
 
-];
 
+console.log(questionsArray)
 
 let arrayIndex = 0
 let score = 0
@@ -57,6 +65,8 @@ console.log(questionsArray.length)
 </script>
 
 <main>
+	{#if isReady}
+	<Button class='warning' on:click={toggle} > Quit Game </Button>
 	<QuestionCard
 	question ={currentQuestion.question}
 	difficulty = {currentQuestion.difficulty}
@@ -65,7 +75,19 @@ console.log(questionsArray.length)
 	score = {score}
 	ShowNext= {ShowNext}
 	/>
+	{#if arrayIndex < 10 }
 	<Button class='next-btn' on:click={ShowNext} bind:value={arrayIndex}> Next quesion: {arrayIndex} </Button>
+	{/if}
+
+	{#if arrayIndex > 10 }
+	<Button class='next-btn' on:click={fetchQuestions} bind:value={arrayIndex}> NewGame {arrayIndex} </Button>
+	{/if}
+
+	{/if}
+	{#if !isReady || arrayIndex > 9}
+		<Button class='next-btn' on:click={toggle} > New Game </Button>
+	{/if}
+
 
 </main>
 
