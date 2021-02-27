@@ -34,6 +34,7 @@ const fetchQuestions = async (cat, diff) => {
   });
   return newQuestions;
 };
+fetchQuestions('9','easy')
 let isReady = false;
 function toggle(cat, diff) {
   isReady = !isReady;
