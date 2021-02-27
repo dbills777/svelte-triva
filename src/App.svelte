@@ -1,41 +1,67 @@
 <script>
 import {Button} from 'sveltestrap';
 import  QuestionCard  from "./Question.svelte";
+import { onMount } from 'svelte';
 
 
 let questions = []
 
-async function getAPIData(url) {
-	try {
-		const response = await fetch(url);
-		const data = await response.json();
-		return data;
-	} catch (error) {}
-}
+// async function getAPIData(url) {
+// 	try {
+// 		const response = await fetch(url);
+// 		const data = await response.json();
+// 		return data;
+// 	} catch (error) {}
+// }
 
-const theData = getAPIData(`https://opentdb.com/api.php?amount=10&category=9&difficulty=hard&type=multiple`)
-	.then((data) => {
-		questions = data.results.map((apiQuestion) => {
+// const theData = getAPIData(`https://opentdb.com/api.php?amount=10&category=9&difficulty=hard&type=multiple`)
+// 	.then((data) => {
+// 		questions = data.results.map((apiQuestion) => {
+// 		const question = {
+// 			question: apiQuestion.question.replace(/&#039;/g, " ").replace(/&quot;/g, '"').replace(/&rsquo;/g, `'`).replace(/&amp;/g, '&'),
+// 			difficulty: apiQuestion.difficulty,
+// 			correct_answer: apiQuestion.correct_answer,
+// 			incorrect_answers: apiQuestion.incorrect_answers,
+// 			};
+// 		questionsArray.push(question)
+// 		return question;
+// 		});
+// 	});
+
+const fetchQuestions = async( cat, diff) =>{
+	const res = await fetch(`https://opentdb.com/api.php?amount=10&category=${cat}&difficulty=${diff}&type=multiple`);
+	const data = await res.json()
+	const questions = await data.results
+	console.log(questions)
+	let newQuestions = questions.map((apiQuestion) => {
 		const question = {
 			question: apiQuestion.question.replace(/&#039;/g, " ").replace(/&quot;/g, '"').replace(/&rsquo;/g, `'`).replace(/&amp;/g, '&'),
 			difficulty: apiQuestion.difficulty,
 			correct_answer: apiQuestion.correct_answer,
 			incorrect_answers: apiQuestion.incorrect_answers,
-			};
-		questionsArray.push(question)
-		return question;
-		});
-	});
+		};
+		return question
+		// questionsArray.push(question)
 
-let questionsArray = [
-  {
-    category: 'General Knowledge',
-    type: 'multiple',
-    difficulty: 'easy',
-    question: 'Are you Ready for Trivia? Hit Next Question to Begin',
-    correct_answer: 'Go',
-    incorrect_answers: ['1', '2', '3', 'GO'],
-  },
+	});
+	return newQuestions
+}
+
+// fetchQuestions('9', 'hard')
+fetchQuestions('9', 'hard').then((questions)=>{
+	questionsArray = questions
+})
+
+
+// let questionsArray = [
+//   {
+//     category: 'General Knowledge',
+//     type: 'multiple',
+//     difficulty: 'easy',
+//     question: 'Are you Ready for Trivia? Hit Next Question to Begin',
+//     correct_answer: 'Go',
+//     incorrect_answers: ['1', '2', '3', 'GO'],
+//   },
 
 ];
 
@@ -45,7 +71,6 @@ let score = 0
 let remaining = 11
 let answered = -1
 
-$: console.log()
 const ShowNext = () =>{
 	arrayIndex +=1
 	bannerUpdate()
@@ -54,7 +79,7 @@ const bannerUpdate = ()=>{
 	remaining -=1
 	answered +=1
 }
-// console.log(questions)
+console.log(questions)
 $: currentQuestion = questionsArray[arrayIndex]
 console.log(questionsArray.length)
 </script>
