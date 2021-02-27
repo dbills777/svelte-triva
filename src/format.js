@@ -1,26 +1,16 @@
-let list = [
-  {
-    category: 'General Knowledge',
-    type: 'multiple',
-    difficulty: 'easy',
-    question: 'Which company did Valve cooperate with in the creation of the Vive?',
-    correct_answer: 'HTC',
-    incorrect_answers: ['Oculus', 'Google', 'Razer'],
-  },
-  {
-    category: 'General Knowledge',
-    type: 'multiple',
-    difficulty: 'easy',
-    question: 'What was the name of the WWF professional wrestling tag team made up of the wrestlers Ax and Smash?',
-    correct_answer: 'Demolition',
-    incorrect_answers: ['The Dream Team', 'The Bushwhackers', 'The British Bulldogs'],
-  },
-  {
-    category: 'General Knowledge',
-    type: 'multiple',
-    difficulty: 'easy',
-    question: 'How would one say goodbye in Spanish?',
-    correct_answer: 'Adi&oacute;s',
-    incorrect_answers: [' Hola', 'Au Revoir', 'Salir'],
-  },
-];
+function htmlDecode(input) {
+  const e = document.createElement('textarea');
+  e.innerHTML = input;
+  return e.childNodes.length === 0 ? '' : e.childNodes[0].nodeValue;
+}
+
+function shuffle(arr = []) {
+  const array = arr;
+  for (let i = arr.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+export { htmlDecode, shuffle };
