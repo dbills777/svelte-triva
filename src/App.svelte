@@ -1,6 +1,7 @@
 <script>
 import {Button} from 'sveltestrap';
 import  QuestionCard  from "./Question.svelte";
+import { difficulty, categories } from "./data";
 
 let questions = []
 let questionsArray = [
@@ -59,19 +60,7 @@ $: currentQuestion = questionsArray[arrayIndex]
 // select box info
 let category;
 let difficultyLevel;
-let categories = [
-		{ id: "9", text: `General Knowledge` },
-		{ id: "14", text: `Entertainment: TV` },
-		{ id: "21", text: `Sports` },
-		{ id: "22", text: `Geography` },
-		{ id: "23", text: `History` },
-		{ id: "15", text: `Entertainment: Video Games` },
-	];
-let difficulty = [
-		{ id: "easy", text: `Easy` },
-		{ id: "medium", text: `Medium` },
-		{ id: "hard", text: `Hard` }
-	];
+
 // selectbox submit
 function handleSubmit() {
 	toggle(category.id, difficultyLevel.id)
@@ -106,14 +95,14 @@ function handleSubmit() {
 	<select bind:value={category}>
 		{#each categories as option}
 			<option value={option}>
-				{option.text}
+				{option.name}
 			</option>
 		{/each}
 	</select>
 	<select bind:value={difficultyLevel}>
 		{#each difficulty as option}
 			<option value={option}>
-				{option.text}
+				{option.id}
 			</option>
 		{/each}
 	</select>
