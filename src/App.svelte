@@ -3,7 +3,7 @@ import {Button} from 'sveltestrap';
 import  QuestionCard  from "./Question.svelte";
 import { difficulty, categories } from "./data";
 
-let questions = []
+let questions = [];
 let questionsArray = [
   {
     category: 'General Knowledge',
@@ -13,49 +13,50 @@ let questionsArray = [
     correct_answer: 'Go',
     incorrect_answers: ['1', '2', '3', 'GO'],
   },
-
 ];
 
-const fetchQuestions = async( cat, diff) =>{
-	const res = await fetch(`https://opentdb.com/api.php?amount=11&category=${cat}&difficulty=${diff}&type=multiple`);
-	const data = await res.json()
-	const questions = data.results
-	let newQuestions = questions.map((apiQuestion) => {
-		const question = {
-			question: apiQuestion.question.replace(/&#039;/g, " ").replace(/&quot;/g, '"').replace(/&rsquo;/g, `'`).replace(/&amp;/g, '&'),
-			difficulty: apiQuestion.difficulty,
-			correct_answer: apiQuestion.correct_answer,
-			incorrect_answers: apiQuestion.incorrect_answers,
-		};
-		return question
-	});
-	return newQuestions
-}
-let isReady = false
-	function toggle(cat, diff) {
-		isReady = !isReady;
-		arrayIndex = 0
-		if(isReady){
-		fetchQuestions(cat, diff).then((questions)=>{
-			questionsArray = questions
-		})
-	}
-	}
-
-
-let arrayIndex = 0
-let score = 0
-
-const ShowNext = () =>{
-	if(arrayIndex<10){
-		arrayIndex +=1
-	}
-	else{
-		return
-	}
+const fetchQuestions = async (cat, diff) => {
+  const res = await fetch(`https://opentdb.com/api.php?amount=11&category=${cat}&difficulty=${diff}&type=multiple`);
+  const data = await res.json();
+  const questions = data.results;
+  let newQuestions = questions.map((apiQuestion) => {
+    const question = {
+      question: apiQuestion.question
+        .replace(/&#039;/g, ' ')
+        .replace(/&quot;/g, '"')
+        .replace(/&rsquo;/g, `'`)
+        .replace(/&amp;/g, '&'),
+      difficulty: apiQuestion.difficulty,
+      correct_answer: apiQuestion.correct_answer,
+      incorrect_answers: apiQuestion.incorrect_answers,
+    };
+    return question;
+  });
+  return newQuestions;
+};
+let isReady = false;
+function toggle(cat, diff) {
+  isReady = !isReady;
+  arrayIndex = 0;
+  if (isReady) {
+    fetchQuestions(cat, diff).then((questions) => {
+      questionsArray = questions;
+    });
+  }
 }
 
-$: currentQuestion = questionsArray[arrayIndex]
+let arrayIndex = 0;
+let score = 0;
+
+const ShowNext = () => {
+  if (arrayIndex < 10) {
+    arrayIndex += 1;
+  } else {
+    return;
+  }
+};
+
+$: currentQuestion = questionsArray[arrayIndex];
 
 // select box info
 let category;
@@ -63,8 +64,9 @@ let difficultyLevel;
 
 // selectbox submit
 function handleSubmit() {
-	toggle(category.id, difficultyLevel.id)
+  toggle(category.id, difficultyLevel.id);
 }
+
 </script>
 
 <main>
