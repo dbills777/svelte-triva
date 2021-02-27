@@ -46,7 +46,7 @@ function checkAnswer(e){
 
 <div class="container">
   <Card class="mb-3">
-  <CardHeader>
+  <CardHeader class = "card-header">
     <CardTitle > <h2> {question} </h2></CardTitle>
   </CardHeader>
   <CardBody>
@@ -57,12 +57,15 @@ function checkAnswer(e){
     <br>
       {/each}
   </CardBody>
-  <CardFooter class='footer-display'> <p>  Difficulty Level:<span> {difficulty}  </span> </p> <h3 class=Score> Correct: {score}</h3><h3 class=Score> Incorrect: {incorrect}</h3></CardFooter>
+  <CardFooter class='footer-display'> <p>  Difficulty Level: <span> {difficulty}  </span> </p> <h3 class=Score> Correct: {score}</h3><h3 class=Score> Incorrect: {incorrect}</h3></CardFooter>
 </Card>
 </div>
 
 
 
 <style>
-
+span{
+  font-weight: bold;
+  text-transform: uppercase;
+}
 </style>
