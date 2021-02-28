@@ -4,18 +4,9 @@ import  QuestionCard  from "./Question.svelte";
 import { difficulty, categories } from "./data";
 
 let questions = [];
-let questionsArray = [
-  {
-    category: 'General Knowledge',
-    type: 'multiple',
-    difficulty: 'easy',
-    question: 'Are you Ready for Trivia? Hit Next Question to Begin',
-    correct_answer: 'Go',
-    incorrect_answers: ['1', '2', '3', 'GO'],
-  },
-];
+let questionsArray = [];
 
-const fetchQuestions = async (cat, diff) => {
+const fetchQuestions = async (cat = '9', diff='easy') => {
   const res = await fetch(`https://opentdb.com/api.php?amount=11&category=${cat}&difficulty=${diff}&type=multiple`);
   const data = await res.json();
   const questions = data.results;
@@ -34,7 +25,6 @@ const fetchQuestions = async (cat, diff) => {
   });
   return newQuestions;
 };
-fetchQuestions('9','easy')
 let isReady = false;
 function toggle(cat, diff) {
   isReady = !isReady;
