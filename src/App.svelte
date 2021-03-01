@@ -24,7 +24,10 @@ const fetchQuestions = async (cat, diff) => {
       question: apiQuestion.question
         .replace(/&#039;/g, ' ')
         .replace(/&quot;/g, '"')
+        .replace(/&ldquo;/g, '"')
+        .replace(/&rdquo;/g, '"')
         .replace(/&rsquo;/g, `'`)
+        .replace(/&hellip;/g, `'`)
         .replace(/&amp;/g, '&'),
       difficulty: apiQuestion.difficulty,
       correct_answer: apiQuestion.correct_answer,
