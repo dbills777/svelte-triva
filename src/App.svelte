@@ -16,7 +16,7 @@ let questionsArray = [
 ];
 
 const fetchQuestions = async (cat, diff) => {
-  const res = await fetch(`https://opentdb.com/api.php?amount=10&category=${cat}&difficulty=${diff}&type=multiple`);
+  const res = await fetch(`https://opentdb.com/api.php?amount=11&category=${cat}&difficulty=${diff}&type=multiple`);
   const data = await res.json();
   const questions = data.results;
   let newQuestions = questions.map((apiQuestion) => {
