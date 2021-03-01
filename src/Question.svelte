@@ -70,7 +70,7 @@ function checkAnswer(e){
       <CardFooter class='footer-display'> <p>  Difficulty Level: <span> {difficulty}  </span> </p> <h3 class=Score> Correct: {score}</h3><h3 class=Score> Incorrect: {incorrect}</h3></CardFooter>
       </Card>
       {#each all_items as answers }
-      <div class="card-header">
+      <div class="card-header card">
        Previous question:
        {answers.question}
        <br>

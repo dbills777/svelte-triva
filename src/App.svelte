@@ -100,6 +100,7 @@ function handleSubmit() {
 
 	{/if}
 	{#if !isReady }
+	
 	<h2 class="title">Trivia</h2>
 	<form on:submit|preventDefault={handleSubmit}>
 	<h3 class="directions">Pick a Category and a level to start playing Trivia</h3>

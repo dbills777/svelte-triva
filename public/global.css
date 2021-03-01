@@ -48,7 +48,9 @@ textarea {
 input:disabled {
   color: #ccc;
 }
-
+.card{
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
 .container {
   margin-top: 5rem;
   /* min-height: 50vh; */
@@ -62,6 +64,7 @@ input:disabled {
 .card-header {
   background-color: rgb(142, 159, 255);
   height: 10rem;
+
 }
 .title {
   text-align: center;
@@ -72,12 +75,14 @@ form {
   padding: 8rem;
   background-color: rgb(142, 159, 255);
   border-radius: 50px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 .directions {
   color: white;
   text-transform: capitalize;
   margin-bottom: 2rem;
   padding-top: 0;
+
 }
 
 .wide-button {
