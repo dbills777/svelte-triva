@@ -30,7 +30,7 @@ function shuffle(array) {
 
 function checkAnswer(e){
   const currentInfo = [{correctAnswer: correct_answer, yourGuess: e.target.value, question: question}]
-  if(arrayIndex < 10 ){
+  if(arrayIndex < 11 ){
     // console.log("correct: ", correct_answer)
     // console.log("selected answer: ", e.target.value)
     if(e.target.value === correct_answer){
