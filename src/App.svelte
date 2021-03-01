@@ -57,7 +57,7 @@ const ShowNext = () => {
   if (arrayIndex < 10) {
     arrayIndex += 1;
   } else {
-    // alert('gameOver');
+    alert('gameOver');
 	// toggle()
   }
 };
