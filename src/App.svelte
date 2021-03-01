@@ -34,8 +34,12 @@ const fetchQuestions = async (cat, diff) => {
   });
   return newQuestions;
 };
+
+
 fetchQuestions('9','easy')
 let isReady = false;
+
+
 function toggle(cat, diff) {
   isReady = !isReady;
   arrayIndex = 0;
@@ -53,7 +57,8 @@ const ShowNext = () => {
   if (arrayIndex < 10) {
     arrayIndex += 1;
   } else {
-    return;
+    // alert('gameOver');
+	// toggle()
   }
 };
 

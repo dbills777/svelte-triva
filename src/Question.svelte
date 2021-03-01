@@ -18,7 +18,7 @@ export let arrayIndex;
 export let ShowNext
 let incorrect = 0
 let myList = []
-
+$: arrayIndex
 $: all_items = myList
 $: score
 $: all_answers = [...incorrect_answers, correct_answer]
@@ -28,17 +28,24 @@ function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
 }
 
+
 function checkAnswer(e){
   const currentInfo = [{correctAnswer: correct_answer, yourGuess: e.target.value, question: question}]
+  console.log(arrayIndex)
   if(arrayIndex < 11 ){
+    // console.log("correct: ", correct_answer)
+    // console.log("selected answer: ", e.target.value)
     // console.log("correct: ", correct_answer)
     // console.log("selected answer: ", e.target.value)
     if(e.target.value === correct_answer){
         ShowNext()
         myList = currentInfo
+
         return score +=1
     }
+
     else{
+
       ShowNext()
         myList = currentInfo
       return  incorrect +=1
