@@ -58,7 +58,7 @@ const ShowNext = () => {
     arrayIndex += 1;
   } else {
     alert('gameOver');
-	// toggle()
+	toggle()
   }
 };
 
